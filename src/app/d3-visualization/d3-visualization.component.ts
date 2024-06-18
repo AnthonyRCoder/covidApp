@@ -24,7 +24,7 @@ export class D3VisualizationComponent implements OnInit {
   }
 
   private createMap(data: any): void {
-    const width = 1060;
+    const width = 1260;
     const height = 600;
 
     const projection = d3.geoMercator()
@@ -71,7 +71,7 @@ export class D3VisualizationComponent implements OnInit {
       svg.selectAll('circle')
         .data(data)
         .style('fill', (d: any) => {
-          return this.selectedCountry && d.country === this.selectedCountry.country ? 'blue' : 'red';
+          return this.selectedCountry && d.country === this.selectedCountry.country ? 'yellow' : 'red';
         });
 
       // Draw map borders
@@ -92,7 +92,7 @@ export class D3VisualizationComponent implements OnInit {
     // Redraw circles with updated selection
     d3.selectAll('circle')
       .style('fill', (d: any) => {
-        return this.selectedCountry && d.country === this.selectedCountry.country ? 'blue' : 'red';
+        return this.selectedCountry && d.country === this.selectedCountry.country ? 'yellow' : 'red';
       });
   }
 }

@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Helpful Resources for COVID-19</h1>
+    <div class="resources">
+      <div class="resource-item" *ngFor="let resource of resources">
+        <h2>{{ resource.title }}</h2>
+        <p>{{ resource.description }}</p>
+        <a [href]="resource.url" target="_blank">Learn More</a>
+      </div>
+    </div>
+  </div>
+  
