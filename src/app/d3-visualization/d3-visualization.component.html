@@ -1,4 +1,13 @@
 <p>d3-visualization works!</p>
 
-<svg width="500" height="500"></svg>
-
+  <!-- Additional visualization components or placeholders can be added here -->
+  
+  <div id="covid19Map"></div>
+  <ul>
+    <li *ngFor="let country of covidData"
+        [class.selected]="country === selectedCountry"
+        (click)="highlightCountry(country)">
+      {{ country.country }}
+    </li>
+  </ul>
+  
