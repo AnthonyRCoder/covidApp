@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import { CovidDataService } from '../covid-data.service';
+import { CovidDataService } from '../../covid-data.service';
+import { HeaderComponent } from '../header/header.component';
+import { ContentComponent } from '../content/content.component';
 
 @Component({
   selector: 'app-covid19-chart',
+  standalone: true,
+  imports: [HeaderComponent, ContentComponent],
   templateUrl: './covid19-chart.component.html',
   styleUrls: ['./covid19-chart.component.scss']
 })

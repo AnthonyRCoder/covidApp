@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
-import { CovidDataService } from '../covid-data.service';
+import { CovidDataService } from '../../covid-data.service';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
+import { ContentComponent } from '../content/content.component';
 
 @Component({
   selector: 'app-d3-visualization',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderComponent, ContentComponent],
   templateUrl: './d3-visualization.component.html',
   styleUrls: ['./d3-visualization.component.scss']
 })
