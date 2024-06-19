@@ -28,8 +28,8 @@ export class Covid19ChartComponent implements OnInit {
       recovered: data.recovered[key]
     })).filter(d => d.date !== null) as { date: Date, cases: number, deaths: number, recovered: number }[];
   
-    const margin = { top: 20, right: 30, bottom: 40, left: 40 },
-          width = 800 - margin.left - margin.right,
+    const margin = { top: 20, right: 30, bottom: 40, left: 70 },
+          width = 900 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
   
     const svg = d3.select('#covid19Chart')
@@ -48,14 +48,30 @@ export class Covid19ChartComponent implements OnInit {
       .attr('transform', `translate(0,${height})`)
       .call(d3.axisBottom(x));
   
-    const y = d3.scaleLinear()
-      .domain([0, d3.max(casesData, d => Math.max(d.cases, d.deaths, d.recovered)) as number])
-      .nice()
-      .range([height, 0]);
-  
-    svg.append('g')
-      .attr('class', 'y-axis')
-      .call(d3.axisLeft(y));
+    // Adjust the y scale domain to fit the desired range
+const maxYValue = d3.max(casesData, d => Math.max(d.cases, d.deaths, d.recovered)) as number;
+const y = d3.scaleLinear()
+  .domain([0, maxYValue]) // Update the domain as needed
+  .nice()
+  .range([height, 0]);
+
+// Format the y-axis ticks to display in millions
+const yAxis = d3.axisLeft(y)
+  .tickFormat(d3.format(".2s")); // Format for millions (e.g., 100M, 200M, ...)
+
+// Append the y-axis to the SVG
+svg.append('g')
+  .attr('class', 'y-axis')
+  .call(yAxis);
+
+// Update the Y Axis label to reflect the change in units
+svg.append('text')
+  .attr('transform', 'rotate(-90)')
+  .attr('x', -height / 2)
+  .attr('y', -margin.left + 20)
+  .attr('text-anchor', 'middle')
+  .text('Count (in millions)'); // Update the label text
+
   
     const lineCases = d3.line<{ date: Date, cases: number, deaths: number, recovered: number }>()
       .x(d => x(d.date) as number)
@@ -68,6 +84,7 @@ export class Covid19ChartComponent implements OnInit {
     const lineRecovered = d3.line<{ date: Date, cases: number, deaths: number, recovered: number }>()
       .x(d => x(d.date) as number)
       .y(d => y(d.recovered));
+    console.log(data);
   
     // Draw the cases line
     svg.append('path')
@@ -105,12 +122,11 @@ export class Covid19ChartComponent implements OnInit {
       .attr('transform', 'rotate(-90)')
       .attr('x', -height / 2)
       .attr('y', -margin.left + 20)
-      .attr('text-anchor', 'middle')
-      .text('Count');
+      .attr('text-anchor', 'middle');
   
     // Add legend
     const legend = svg.append('g')
-      .attr('transform', `translate(${width - 100}, 10)`);
+      .attr('transform', `translate(${width - 400}, 10)`);
   
     legend.append('rect')
       .attr('width', 10)

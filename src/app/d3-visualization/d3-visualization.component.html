@@ -1,8 +1,15 @@
-<p>d3-visualization works!</p>
 
-  <!-- Additional visualization components or placeholders can be added here -->
+  <div class="map-container">
+    <div id="covid19Map"></div>
+
+     <div class="info-panel" *ngIf="selectedCountry">
+    <button class="close-button" (click)="closePanel()">X</button>
+    <h1>{{ selectedCountry.country }}</h1>
+    <p>Cases: {{ selectedCountry.cases }}</p>
+    <p>Deaths: {{ selectedCountry.deaths }}</p>
+    <p>Recovered: {{ selectedCountry.recovered }}</p>
+  </div>
   
-  <div id="covid19Map"></div>
   <ul>
     <li *ngFor="let country of covidData"
         [class.selected]="country === selectedCountry"
@@ -10,4 +17,3 @@
       {{ country.country }}
     </li>
   </ul>
-  

@@ -15,20 +15,11 @@ import { CovidDataService } from '../../covid-data.service';
 
 export class HomePageComponent {
   
-  constructor(private recipeApiService: CovidDataService) { }
+  constructor(private covidData: CovidDataService) { }
 
-  //recipes: Recipe[] = [];
+
 
   ngOnInit() {
-    this.getRecipes();
-  }
 
-  async getRecipes() {
-    try {
-      const response = await this.recipeApiService.getCovid19Data();
-      //this.recipes = response;
-    } catch (error) {
-      console.error(error);
-    }
   }
 }
