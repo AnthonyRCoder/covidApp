@@ -5,6 +5,7 @@
      <div class="info-panel" *ngIf="selectedCountry">
     <button class="close-button" (click)="closePanel()">X</button>
     <h1>{{ selectedCountry.country }}</h1>
+    <p>Tests: {{ selectedCountry.tests}}</p>
     <p>Cases: {{ selectedCountry.cases }}</p>
     <p>Deaths: {{ selectedCountry.deaths }}</p>
     <p>Recovered: {{ selectedCountry.recovered }}</p>

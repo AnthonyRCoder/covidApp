@@ -1,0 +1,12 @@
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bar {
+    fill: steelblue;
+  }
+  .x-axis path, .x-axis line, .y-axis path, .y-axis line {
+    stroke: #000;
+  }
+  
