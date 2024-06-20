@@ -11,10 +11,12 @@
     <p>Recovered: {{ selectedCountry.recovered }}</p>
   </div>
   
-  <ul>
-    <li *ngFor="let country of covidData"
-        [class.selected]="country === selectedCountry"
-        (click)="highlightCountry(country)">
-      {{ country.country }}
-    </li>
-  </ul>
+  <div class="flex-container">
+    <ul >
+      <li *ngFor="let country of covidData"
+          [class.selected]="country === selectedCountry"
+          (click)="highlightCountry(country)">
+        {{ country.country }}
+      </li>
+    </ul>
+  </div>
